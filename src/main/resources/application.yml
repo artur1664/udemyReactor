@@ -1,6 +1,8 @@
 spring:
   profiles:
     active: test
+simple:
+  client: http://localhost:8080
 ---
 spring:
   profiles:
