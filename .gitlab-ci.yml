@@ -9,7 +9,7 @@ build:
   image: gradle:6.5.1-jdk11
   stage: build
   script:
-    - gradle build
+    - gradle build -x
   artifacts:
     paths:
       - build/libs/*.jar
