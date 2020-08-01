@@ -11,3 +11,10 @@ spring:
 spring:
   profiles:
     active: test
+---
+spring:
+  profiles:
+    active: docker
+  data:
+    mongodb:
+      uri: mongodb://user:user@mongodb1:27017,mongodb2:27018,mongodb3:27019/shopdb
