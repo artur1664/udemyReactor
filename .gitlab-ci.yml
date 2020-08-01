@@ -5,6 +5,8 @@ stages:
   - build
   - package
   - deploy
+variables:
+  DOCKER_TLS_CERTDIR: ""
 build:
   image: gradle:6.5.1-jdk11
   stage: build
