@@ -1,0 +1,11 @@
+version: '3'
+services:
+  udemy-reactor:
+    container_name: config-server
+    image: registry.gitlab.com/artur.gitlab/udemyreactor:develop
+    networks:
+      - reactor
+    ports:
+      - 8080:8080
+networks:
+  reactor:

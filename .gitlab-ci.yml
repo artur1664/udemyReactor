@@ -4,7 +4,6 @@ services:
 stages:
   - build
   - package
-  - deploy
 variables:
   DOCKER_TLS_CERTDIR: ""
 build:
@@ -18,20 +17,8 @@ build:
 package:
   stage: package
   before_script:
-#    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" "$CI_REGISTRY" --password-stdin
   script:
     - docker build -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
     - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
-deploy_staging:
-  stage: deploy
-  script:
-    - apk upgrade && apk update
-    - apk add openssh-client
-    - apk add sshpass
-    - sshpass -p "$STAGING_SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no $STAGING_SERVER_USER@$STAGING_SERVER docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - sshpass -p "$STAGING_SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no $STAGING_SERVER_USER@$STAGING_SERVER docker pull "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
-  #    - sshpass -p "$STAGING_SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no $STAGING_SERVER_USER@$STAGING_SERVER "docker container stop mathflake_api && docker container rm mathflake_api || true"
-  #    - sshpass -p "$STAGING_SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no $STAGING_SERVER_USER@$STAGING_SERVER docker run --name mathflake_api -p 80:80 -d registry.gitlab.com/mathflake/api
-  only:
-    - develop
+#todo deploy on server -> now I use docker compose file on server
