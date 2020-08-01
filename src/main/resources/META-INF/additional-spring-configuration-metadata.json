@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "simple.client",
+      "type": "java.lang.String",
+      "description": "Description for simple.client."
+    }
+  ]
+}

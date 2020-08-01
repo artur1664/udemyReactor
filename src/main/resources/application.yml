@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: test
+simple:
+  client: http://localhost:8080
+---
+spring:
+  profiles:
+    active: dev
+---
+spring:
+  profiles:
+    active: test
