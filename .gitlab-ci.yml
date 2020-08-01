@@ -1,7 +1,6 @@
 image: docker:latest
 services:
   - docker:dind
-  - mongo
 stages:
   - build
   - package
@@ -11,7 +10,7 @@ build:
   image: gradle:6.5.1-jdk11
   stage: build
   script:
-    - gradle build
+    - gradle build -x test
   artifacts:
     paths:
       - build/libs/*.jar
