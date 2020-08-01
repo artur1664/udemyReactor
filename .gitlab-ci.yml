@@ -21,4 +21,3 @@ package:
   script:
     - docker build -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
     - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
-#todo deploy on server -> now I use docker compose file on server
